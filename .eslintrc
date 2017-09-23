@@ -1,0 +1,6 @@
+{
+  "extends": ["prettier", "standard"],
+  "rules": {
+    "no-multi-spaces": ["error", { "ignoreEOLComments": true }]
+  }
+}

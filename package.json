@@ -1,0 +1,41 @@
+{
+  "name": "terminal-adventure",
+  "version": "0.0.1",
+  "description": "branchable / chainable terminal forms",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests",
+    "format": "eslint ./ --fix"
+  },
+  "pre-commit": [
+    "format"
+  ],
+  "pre-push": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/losandes/terminal-adventure.git"
+  },
+  "keywords": [
+    "terminal",
+    "forms",
+    "prompt",
+    "menu",
+    "choose your own adventure"
+  ],
+  "author": "Andy Wright",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/losandes/terminal-adventure/issues"
+  },
+  "homepage": "https://github.com/losandes/terminal-adventure#readme",
+  "devDependencies": {
+    "eslint": "^4.7.0",
+    "eslint-config-prettier": "^2.5.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "request": "^2.82.0",
+    "uuid": "^3.1.0"
+  }
+}
