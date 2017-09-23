@@ -1,6 +1,6 @@
 {
   "name": "terminal-adventure",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "branchable / chainable terminal forms",
   "main": "index.js",
   "scripts": {
