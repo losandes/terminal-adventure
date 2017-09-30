@@ -1,6 +1,6 @@
 {
   "name": "terminal-adventure",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "branchable / chainable terminal forms",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,9 @@
     "url": "https://github.com/losandes/terminal-adventure/issues"
   },
   "homepage": "https://github.com/losandes/terminal-adventure#readme",
+  "dependencies": {
+    "chalk": "^2.1.0"
+  },
   "devDependencies": {
     "eslint": "^4.7.0",
     "eslint-config-prettier": "^2.5.0",
