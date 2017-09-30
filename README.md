@@ -177,13 +177,13 @@ const whereWouldYouEatThem = (likesThem) => {
   }, [{
     key: 'In a boat',
     value: 'BOAT',
-    selected: likesThem.value
+    selected: likesThem
   },
   // ...
   {
     key: 'ANYWHERE!',
     value: 'ANYWHERE',
-    selected: likesThem.value
+    selected: likesThem
   }], {
     multipleChoice: true
   })

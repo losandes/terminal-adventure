@@ -113,55 +113,55 @@ module.exports = function (adventure) {
       }, [{
         key: 'In a boat',
         value: 'BOAT',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'With a goat',
         value: 'GOAT',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'In the rain',
         value: 'RAIN',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'In the dark',
         value: 'DARK',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'On a train',
         value: 'TRAIN',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'In a car',
         value: 'CAR',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'In a tree',
         value: 'TREE',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'In a box',
         value: 'BOX',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'With a fox',
         value: 'FOX',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'In a house',
         value: 'HOUSE',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'With a mouse',
         value: 'MOUSE',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'here and there',
         value: 'HERE_AND_THERE',
-        selected: likesThem.value
+        selected: likesThem
       }, {
         key: 'ANYWHERE!',
         value: 'ANYWHERE',
-        selected: likesThem.value
+        selected: likesThem
       }], {
         multipleChoice: true
       })
@@ -252,7 +252,7 @@ module.exports = function (adventure) {
     'Configuration',
     'Configure Color With Function'
   ]).then((answer) => {
-    switch (answer.key) {
+    switch (answer) {
       case 'Simple Prompt':
         return simplePromptExample()
       case 'Required and Hidden Prompt':

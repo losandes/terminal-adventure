@@ -67,7 +67,7 @@ module.exports.factory = (writer, styles) => {
           if (options.multipleChoice) {
             let answer = choices.filter((choice, idx) => {
               return selected.indexOf(idx) > -1
-            })
+            }).map(item => item.value)
             adventure.addAnswer(question.key, answer)
             resolve(answer)
             close()
@@ -76,8 +76,8 @@ module.exports.factory = (writer, styles) => {
             writer.newLine()
             rerender()
             let answer = choices[position]
-            adventure.addAnswer(question.key, answer)
-            resolve(answer)
+            adventure.addAnswer(question.key, answer.value)
+            resolve(answer.value)
             close()
           }
         }
@@ -203,10 +203,10 @@ module.exports.factory = (writer, styles) => {
 
       if (typeof choice === 'string') {
         key = choice
-        value = i
+        value = choice
       } else if (choice && typeof choice.key === 'string') {
         key = choice.key
-        value = typeof choice.value !== 'undefined' && choice.value !== null ? choice.value : i
+        value = typeof choice.value !== 'undefined' && choice.value !== null ? choice.value : choice.key
       } else {
         throw new Error('Choices must either be a string, or an object with `key` and `value` properties')
       }

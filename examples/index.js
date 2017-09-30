@@ -4,7 +4,8 @@ const Docs = require('./docs.js')
 
 adventures.menu('\nChoose an adventure', ['Examples from Readme', 'Zork'])
   .then((answer) => {
-    switch (answer.key) {
+console.log(answer)
+    switch (answer) {
       case 'Zork':
         return new Zork()
       default:
