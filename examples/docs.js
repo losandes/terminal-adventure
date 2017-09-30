@@ -41,6 +41,16 @@ module.exports = function (adventure) {
     })
   }
 
+  const defaultValue = () => {
+    adventure.question({
+      question: 'Wanna skip this one? Just click enter.',
+      defaultValue: 'no problem - there\'s a default'
+    }).then((answer) => {
+      console.log('You chose:', answer)
+      adventure.complete()
+    })
+  }
+
   const simpleSingleChoice = () => {
     adventure.menu('Choose one', ['One', 'Two', 'Three'])
       .then((answer) => {
@@ -234,6 +244,7 @@ module.exports = function (adventure) {
     'Simple Prompt',
     'Required and Hidden Prompt',
     'Validated Prompt',
+    'Prompt With Default',
     'Simple Single Choice',
     'Simple Multiple Choice',
     'Key-Value-Pair Choice',
@@ -248,6 +259,8 @@ module.exports = function (adventure) {
         return requiredAndHidden()
       case 'Validated Prompt':
         return validation()
+      case 'Prompt With Default':
+        return defaultValue()
       case 'Simple Single Choice':
         return simpleSingleChoice()
       case 'Simple Multiple Choice':

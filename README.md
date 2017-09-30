@@ -71,6 +71,20 @@ adventure.question({
 })
 ```
 
+If you'd like to present a default value for the user:
+
+```JavaScript
+const adventure = require('terminal-adventure')
+
+adventure.question({
+  question: 'Wanna skip this one? Just click enter.',
+  defaultValue: 'no problem - there\'s a default'
+}).then((answer) => {
+  console.log('You chose:', answer)
+  adventure.complete()
+})
+```
+
 ### Menus
 Terminal Adventure also supports single and multiple choice questions. This first example demonstrates a single choice question in it's simplest form:
 

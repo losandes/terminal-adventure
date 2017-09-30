@@ -12,10 +12,14 @@ module.exports.factory = (writer, styles) => {
     config.prompt = Object.assign({ char: '▸', color: 'cyan' }, cfg.prompt)
     config.messages = Object.assign({ cancel: 'cancelled' }, cfg.messages)
     config.question = Object.assign({
-      format: (question, lastAnswerWasInvalid) => {
+      format: (question, defaultValue, lastAnswerWasInvalid) => {
         if (lastAnswerWasInvalid) {
           return styles.red(`* ${question} ${styles.reset('(required)')}`)
+        } else if (defaultValue) {
+          let def = styles.dim(`(default: ${defaultValue})`)
+          return `${question} ${def}`
         }
+
         return question
       },
       validationMessageColor: 'yellow'
@@ -33,7 +37,7 @@ module.exports.factory = (writer, styles) => {
         prompt()
 
         function prompt (lastAnswerWasInvalid, message) {
-          writer.write(config.question.format(question.question, lastAnswerWasInvalid))
+          writer.write(config.question.format(question.question, question.defaultValue, lastAnswerWasInvalid))
 
           if (message) {
             writer.write(styles.applyColor(config.question.validationMessageColor, message))
@@ -43,6 +47,12 @@ module.exports.factory = (writer, styles) => {
           writer.waitForAnswer(question, function (err, answer) {
             if (err) {
               return reject(err)
+            }
+
+            if (question.defaultValue && (!answer || answer === '')) {
+              adventure.addAnswer(question.key, question.defaultValue)
+              resolve(question.defaultValue)
+              return close()
             }
 
             if (question.required && (!answer || answer === '')) {
@@ -106,6 +116,7 @@ module.exports.factory = (writer, styles) => {
     self.required = typeof q.required === 'boolean' ? q.required : false
     self.validate = typeof q.validate === 'function' ? q.validate : null
     self.hidden = typeof q.hidden === 'boolean' ? q.hidden : false
+    self.defaultValue = q.defaultValue
 
     return self
   }
