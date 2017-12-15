@@ -86,6 +86,9 @@ adventure.question({
 ```
 
 ### Menus
+
+> NOTE that the `menu` features do not work on Windows, only `question`
+
 Terminal Adventure also supports single and multiple choice questions. This first example demonstrates a single choice question in it's simplest form:
 
 > Use the up and down arrows to navigate. Press enter to select.
