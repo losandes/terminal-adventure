@@ -87,7 +87,7 @@ adventure.question({
 
 ### Menus
 
-> NOTE that the `menu` features do not work on Windows, only `question`
+> NOTE that the `menu` features do not work on Windows. Use `question` instead (i.e. `adventure.question('Choose one: (1) Hello, (2) Goodbye (type the number of your answer)')`)
 
 Terminal Adventure also supports single and multiple choice questions. This first example demonstrates a single choice question in it's simplest form:
 
