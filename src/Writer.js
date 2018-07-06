@@ -3,36 +3,43 @@ module.exports.dependencies = ['readline', 'stdin', 'stdout', 'Writable']
 module.exports.factory = (readline, stdin, stdout, Writable) => {
   'use strict'
 
+  const inputSteam = () => {
+    return stdin
+  }
+  const outputStream = () => {
+    return stdout
+  }
+
   const optionalOut = new Output()
   const rli = readline.createInterface({
-    input: stdin,
+    input: inputSteam(),
     output: optionalOut,
     terminal: true
   })
 
   var self = {
     write: console.log,
-    writeRaw: (chars) => { stdout.write(chars) },
+    writeRaw: (chars) => { outputStream().write(chars) },
     newLine: () => { console.log() },
     close: () => {
       return rli.close()
     },
     removeLastLine: () => {
-      return readline.moveCursor(stdin, 0, -1) // remove the new line
+      return readline.moveCursor(outputStream(), 0, -1) // remove the new line
     },
     removeLines: (numberOfLinesToRemove) => {
-      readline.cursorTo(stdin, 0)                             // move to beginning of line
-      readline.moveCursor(stdin, 0, -numberOfLinesToRemove)   // move to the top
-      readline.clearScreenDown(stdin)                         // clear everything below
+      readline.cursorTo(outputStream(), 0)                             // move to beginning of line
+      readline.moveCursor(outputStream(), 0, -numberOfLinesToRemove)   // move to the top
+      readline.clearScreenDown(outputStream())                         // clear everything below
     },
     waitForAnswer: (options, callback) => {
       return new AnswerListener(options, callback)
     },
     on: (eventName, handler) => {
-      return stdin.on(eventName, handler)
+      return inputSteam().on(eventName, handler)
     },
     removeListener: (eventName, handler) => {
-      return stdin.removeListener(eventName, handler)
+      return inputSteam().removeListener(eventName, handler)
     }
   } // /return
 
@@ -65,16 +72,18 @@ module.exports.factory = (readline, stdin, stdout, Writable) => {
     var optionalOut = new Writable({
       write: (chunk, encoding, callback) => {
         if (!hidden) {
-          stdout.write(chunk, encoding)
+          outputStream().write(chunk, encoding, callback)
+        } else {
+          callback()
         }
-
-        callback()
       }
     })
 
     optionalOut.toggleHidden = (options) => {
       hidden = options && options.hidden
     }
+
+    optionalOut.isHidden = () => hidden
 
     return optionalOut
   }
